@@ -2,6 +2,7 @@ import Foundation
 import MetricKit
 
 /// Bridges MetricKit payloads into analytics events until full observability stack lands.
+@MainActor
 final class MetricKitMonitor: NSObject, MXMetricManagerSubscriber {
     static let shared = MetricKitMonitor()
 
@@ -19,7 +20,7 @@ final class MetricKitMonitor: NSObject, MXMetricManagerSubscriber {
         metricManager.remove(self)
     }
 
-    func didReceive(_ payloads: [MXMetricPayload]) {
+    nonisolated func didReceive(_ payloads: [MXMetricPayload]) {
         // TODO: Wire to NarrationAnalytics once implemented.
         for payload in payloads {
             #if DEBUG
@@ -28,5 +29,6 @@ final class MetricKitMonitor: NSObject, MXMetricManagerSubscriber {
         }
     }
 
-    func didReceive(_ payloads: [MXDiagnosticPayload]) {}
+    nonisolated func didReceive(_ payloads: [MXDiagnosticPayload]) {}
 }
+

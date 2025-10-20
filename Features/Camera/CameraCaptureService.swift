@@ -82,8 +82,9 @@ final class CameraCaptureService: NSObject, ObservableObject, @unchecked Sendabl
         }
 
         let requestId = UUID().uuidString
-        NarrationAnalytics.shared.trackCaptureStarted(photoId: tempURL.lastPathComponent, requestId: requestId)
-
+        await MainActor.run {
+            NarrationAnalytics.shared.trackCaptureStarted(photoId: tempURL.lastPathComponent, requestId: requestId)
+        }
         let snapshot = await currentLocationSnapshot()
         let request = PhotoNarrationRequest(
             photoId: tempURL.lastPathComponent,
@@ -103,11 +104,13 @@ final class CameraCaptureService: NSObject, ObservableObject, @unchecked Sendabl
                 }
             }, receiveValue: { thread in
                 let duration = thread.segments.first?.durationMs ?? 0
-                NarrationAnalytics.shared.trackNarrationReady(
-                    threadId: thread.threadId,
-                    origin: thread.cacheOrigin,
-                    durationMs: duration
-                )
+                Task { @MainActor in
+                    NarrationAnalytics.shared.trackNarrationReady(
+                        threadId: thread.threadId,
+                        origin: thread.cacheOrigin,
+                        durationMs: duration
+                    )
+                }
             })
             .store(in: &cancellables)
     }

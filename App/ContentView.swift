@@ -11,64 +11,72 @@ struct ContentView: View {
     private let steps = ["Upload", "Match", "Generate", "TTS"]
 
     var body: some View {
-        ZStack {
-            backgroundPreview
+        GeometryReader { proxy in
+            let layoutWidth = min(proxy.size.width - 32, 380)
+            let horizontalInset = max((proxy.size.width - layoutWidth) / 2, 16)
 
-            VStack(spacing: 16) {
-                LocationPillView(
-                    location: "Paris, France",
-                    type: locationType,
-                    onToggle: toggleLocationType
-                )
-                .padding(.top, 24)
+            ZStack {
+                backgroundPreview
+                    .overlay(Color.black.opacity(0.3))
 
-                if isProcessing {
-                    ProgressStepsView(steps: steps, currentIndex: currentStep)
-                        .transition(.opacity)
+                VStack(spacing: 16) {
+                    LocationPillView(
+                        location: "Paris, France",
+                        type: locationType,
+                        onToggle: toggleLocationType
+                    )
+
+                    if isProcessing {
+                        ProgressStepsView(steps: steps, currentIndex: currentStep)
+                            .transition(.opacity)
+                    }
                 }
+                .frame(width: layoutWidth)
+                .padding(.top, 24)
+                .frame(maxWidth: .infinity, alignment: .top)
+
+                CameraControlsView(
+                    onCapture: handleCapture,
+                    onGallery: { print("Open gallery") },
+                    onChat: { isChatOpen = true }
+                )
+                .frame(width: layoutWidth)
+                .padding(.bottom, 32)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+
+                SlideOutDrawerView(isOpen: isDrawerOpen, onToggle: { isDrawerOpen.toggle() })
+
+                if isChatOpen {
+                    chatOverlay
+                }
+
+                Button(action: { isDark.toggle() }) {
+                    Text(isDark ? "☀️ Light" : "🌙 Dark")
+                        .font(.caption)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Material.ultraThin)
+                        .clipShape(Capsule())
+                }
+                .frame(width: layoutWidth)
+                .padding(.top, 118)
+                .frame(maxWidth: .infinity, alignment: .top)
+
+                Button(action: { isDrawerOpen.toggle() }) {
+                    Image(systemName: "line.3.horizontal")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .padding(12)
+                        .background(Material.ultraThin)
+                        .clipShape(Circle())
+                        .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 2)
+                }
+                .padding(.trailing, horizontalInset - 12)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: .trailing, vertical: .center))
             }
-            .frame(maxWidth: .infinity, alignment: .top)
-
-            CameraControlsView(
-                onCapture: handleCapture,
-                onGallery: { print("Open gallery") },
-                onChat: { isChatOpen = true }
-            )
-            .padding(.horizontal, 32)
-            .padding(.bottom, 36)
-            .frame(maxHeight: .infinity, alignment: .bottom)
-
-            SlideOutDrawerView(isOpen: isDrawerOpen, onToggle: { isDrawerOpen.toggle() })
-
-            if isChatOpen {
-                chatOverlay
-            }
-
-            Button(action: { isDark.toggle() }) {
-                Text(isDark ? "☀️ Light" : "🌙 Dark")
-                    .font(.caption)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(Material.ultraThin)
-                    .clipShape(Capsule())
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.top, 120)
-
-            Button(action: { isDrawerOpen.toggle() }) {
-                Image(systemName: "line.3.horizontal")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .padding(14)
-                    .background(Material.ultraThin)
-                    .clipShape(Circle())
-                    .shadow(radius: 6)
-            }
-            .padding(.trailing, 12)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+            .frame(width: proxy.size.width, height: proxy.size.height)
+            .background(Color.black)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.black)
         .ignoresSafeArea()
         .preferredColorScheme(isDark ? .dark : .light)
     }
@@ -217,44 +225,37 @@ private struct CameraControlsView: View {
     let onChat: () -> Void
 
     var body: some View {
-        HStack {
-            Spacer()
-
+        HStack(alignment: .center, spacing: 36) {
             Button(action: onGallery) {
                 Image(systemName: "photo.on.rectangle")
                     .font(.title2)
                     .foregroundStyle(.white)
-                    .padding(16)
+                    .padding(14)
                     .background(Material.ultraThin)
                     .clipShape(Circle())
             }
 
-            Spacer()
-
             Button(action: onCapture) {
                 Circle()
                     .strokeBorder(Color.white, lineWidth: 6)
-                    .frame(width: 96, height: 96)
+                    .frame(width: 92, height: 92)
                     .overlay(
                         Circle()
-                            .fill(Color.white.opacity(0.18))
-                            .frame(width: 72, height: 72)
+                            .fill(Color.white.opacity(0.2))
+                            .frame(width: 70, height: 70)
                     )
             }
-
-            Spacer()
 
             Button(action: onChat) {
                 Image(systemName: "ellipsis.message")
                     .font(.title2)
                     .foregroundStyle(.white)
-                    .padding(16)
+                    .padding(14)
                     .background(Material.ultraThin)
                     .clipShape(Circle())
             }
-
-            Spacer()
         }
+        .frame(maxWidth: .infinity)
     }
 }
 
@@ -338,4 +339,3 @@ private struct SlideOutDrawerView: View {
 #Preview {
     ContentView()
 }
-
