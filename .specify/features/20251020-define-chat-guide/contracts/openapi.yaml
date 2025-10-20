@@ -1,0 +1,368 @@
+openapi: 3.1.0
+info:
+  title: Conversation-First Narration API
+  version: 0.1.0
+servers:
+  - url: https://api.tourapp.example.com
+paths:
+  /v1/narrations/photo:
+    post:
+      summary: Submit a captured photo to request narration
+      operationId: createPhotoNarration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhotoNarrationRequest'
+      responses:
+        '202':
+          description: Narration request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrationThread'
+  /v1/narrations/location:
+    post:
+      summary: Trigger narration based on location arrival
+      operationId: createLocationNarration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationNarrationRequest'
+      responses:
+        '202':
+          description: Narration request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrationThread'
+  /v1/narrations/{threadId}/regenerate:
+    post:
+      summary: Append regenerated narration blocks based on user command
+      operationId: regenerateNarration
+      parameters:
+        - name: threadId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegenerationRequest'
+      responses:
+        '202':
+          description: Regeneration accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NarrationThread'
+  /v1/narrations/{threadId}/feedback:
+    post:
+      summary: Submit usefulness feedback for narration segments
+      operationId: submitNarrationFeedback
+      parameters:
+        - name: threadId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackRequest'
+      responses:
+        '204':
+          description: Feedback recorded
+  /v1/narrations/{threadId}/stream:
+    get:
+      summary: Stream narration segments and audio URLs as they become available
+      operationId: streamNarration
+      parameters:
+        - name: threadId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: cursor
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Server-sent events delivering narration segments
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/NarrationStreamEvent'
+  /v1/cache/sync:
+    post:
+      summary: Report local cache usage and request eviction guidance
+      operationId: syncCache
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CacheSyncRequest'
+      responses:
+        '200':
+          description: Cache policy response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CacheSyncResponse'
+components:
+  schemas:
+    PhotoNarrationRequest:
+      type: object
+      required:
+        - photoId
+        - captureTimestamp
+        - location
+        - language
+      properties:
+        photoId:
+          type: string
+        captureTimestamp:
+          type: string
+          format: date-time
+        location:
+          $ref: '#/components/schemas/LocationSnapshot'
+        language:
+          $ref: '#/components/schemas/Language'
+        voiceProfile:
+          $ref: '#/components/schemas/VoiceProfile'
+        deviceState:
+          $ref: '#/components/schemas/DeviceState'
+        autoPlayRequested:
+          type: boolean
+        idempotencyKey:
+          type: string
+    LocationNarrationRequest:
+      type: object
+      required:
+        - geofenceId
+        - location
+        - language
+      properties:
+        geofenceId:
+          type: string
+        location:
+          $ref: '#/components/schemas/LocationSnapshot'
+        language:
+          $ref: '#/components/schemas/Language'
+        voiceProfile:
+          $ref: '#/components/schemas/VoiceProfile'
+        autoPlayEligible:
+          type: boolean
+        headphonesStatus:
+          type: string
+          enum: [connected, disconnected]
+        idempotencyKey:
+          type: string
+    RegenerationRequest:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+          description: Natural-language instruction (e.g., "更活泼")
+        language:
+          $ref: '#/components/schemas/Language'
+        voiceProfile:
+          $ref: '#/components/schemas/VoiceProfile'
+        referenceSegmentId:
+          type: string
+          format: uuid
+    FeedbackRequest:
+      type: object
+      required:
+        - feedbackItems
+      properties:
+        feedbackItems:
+          type: array
+          items:
+            type: object
+            required:
+              - segmentId
+              - rating
+            properties:
+              segmentId:
+                type: string
+                format: uuid
+              rating:
+                type: string
+                enum: [useful, not_useful]
+              notes:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+    NarrationThread:
+      type: object
+      required:
+        - threadId
+        - status
+        - segments
+      properties:
+        threadId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [pending, playing, completed, error]
+        originType:
+          type: string
+          enum: [photo, geofence]
+        language:
+          $ref: '#/components/schemas/Language'
+        voiceProfile:
+          $ref: '#/components/schemas/VoiceProfile'
+        cacheOrigin:
+          type: string
+          enum: [fresh_generate, cache_hit]
+        autoPlayEnabled:
+          type: boolean
+        location:
+          $ref: '#/components/schemas/LocationSnapshot'
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/NarrationSegment'
+    NarrationSegment:
+      type: object
+      required:
+        - segmentId
+        - sequenceIndex
+        - text
+      properties:
+        segmentId:
+          type: string
+          format: uuid
+        sequenceIndex:
+          type: integer
+        text:
+          type: string
+        audioUrl:
+          type: string
+          format: uri
+        durationMs:
+          type: integer
+        highlightState:
+          type: string
+          enum: [inactive, active, completed]
+        isAudioReady:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+    NarrationStreamEvent:
+      type: object
+      required:
+        - eventType
+        - payload
+      properties:
+        eventType:
+          type: string
+          enum: [segment_text, segment_audio, status_update, error]
+        payload:
+          type: object
+          description: Event-specific payload structure
+        cursor:
+          type: string
+    CacheSyncRequest:
+      type: object
+      required:
+        - deviceId
+        - totalBytes
+        - items
+      properties:
+        deviceId:
+          type: string
+        totalBytes:
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            required:
+              - cacheKey
+              - sizeBytes
+              - lastAccessed
+            properties:
+              cacheKey:
+                type: string
+              scope:
+                type: string
+                enum: [thread, segment]
+              sizeBytes:
+                type: integer
+              lastAccessed:
+                type: string
+                format: date-time
+              reuseCount:
+                type: integer
+    CacheSyncResponse:
+      type: object
+      required:
+        - actions
+      properties:
+        actions:
+          type: array
+          items:
+            type: object
+            required:
+              - cacheKey
+              - directive
+            properties:
+              cacheKey:
+                type: string
+              directive:
+                type: string
+                enum: [keep, evict]
+              priority:
+                type: integer
+    LocationSnapshot:
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          type: number
+        longitude:
+          type: number
+        placeName:
+          type: string
+        accuracyMeters:
+          type: number
+    Language:
+      type: string
+      enum: [zh-CN, en-US, ja-JP]
+    VoiceProfile:
+      type: string
+      enum: [cn-default, cn-alternate, en-default, jp-default]
+    DeviceState:
+      type: object
+      properties:
+        networkQuality:
+          type: string
+          enum: [excellent, good, poor, offline]
+        batteryLevel:
+          type: integer
+        headphonesStatus:
+          type: string
+          enum: [connected, disconnected]
