@@ -108,7 +108,7 @@ TBD
 
 ---
 
-# C. Figma 提示词包（中英双语，可直接复制到 Figma AI / Magician / Galileo）  
+# C. Figma 提示词包
 
 > 统一规范：iOS 18 风格；iPhone 15 Pro 画板；SF Pro；主色 #0A84FF；圆角 16；毛玻璃与柔和阴影；Auto Layout + 约束；支持浅/深色；**导航为“拍照主屏 + 右侧滑出抽屉”**。
 
