@@ -2,10 +2,33 @@
 
 set -euo pipefail
 
-if [[ $# -ne 1 || "$1" != "--json" ]]; then
-  echo "Usage: check-prerequisites.sh --json" >&2
+REQUIRE_TASKS=false
+INCLUDE_TASKS=false
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: check-prerequisites.sh --json [--require-tasks] [--include-tasks]" >&2
   exit 1
 fi
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --json)
+      shift
+      ;;
+    --require-tasks)
+      REQUIRE_TASKS=true
+      shift
+      ;;
+    --include-tasks)
+      INCLUDE_TASKS=true
+      shift
+      ;;
+    *)
+      echo "Usage: check-prerequisites.sh --json [--require-tasks] [--include-tasks]" >&2
+      exit 1
+      ;;
+  esac
+done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
@@ -46,6 +69,11 @@ if [[ -f "${LATEST_FEATURE_DIR}/quickstart.md" ]]; then
 fi
 if [[ -f "${LATEST_FEATURE_DIR}/tasks.md" ]]; then
   AVAILABLE_DOCS+=("tasks.md")
+elif [[ "${REQUIRE_TASKS}" == "true" ]]; then
+  echo "Error: tasks.md is required but not found in ${LATEST_FEATURE_DIR}" >&2
+  exit 1
+elif [[ "${INCLUDE_TASKS}" == "true" ]]; then
+  AVAILABLE_DOCS+=("tasks.md (missing)")
 fi
 
 jq -n \

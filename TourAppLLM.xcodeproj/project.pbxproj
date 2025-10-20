@@ -1,0 +1,406 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		96E6E19C2BA218AA00D0C0F1 /* TourAppLLMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E18E2BA218AA00D0C0F1 /* TourAppLLMApp.swift */; };
+		96E6E19D2BA218AA00D0C0F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E18F2BA218AA00D0C0F1 /* ContentView.swift */; };
+		96E6E19E2BA218AA00D0C0F1 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E1912BA218AA00D0C0F1 /* DesignTokens.swift */; };
+		96E6E19F2BA218AA00D0C0F1 /* MetricKitMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E1922BA218AA00D0C0F1 /* MetricKitMonitor.swift */; };
+		96E6E1A02BA218AA00D0C0F1 /* CrashlyticsBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E1932BA218AA00D0C0F1 /* CrashlyticsBridge.swift */; };
+		96E6E1A12BA218AA00D0C0F1 /* WeChatAuthBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E6E1942BA218AA00D0C0F1 /* WeChatAuthBridge.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		96E6E18E2BA218AA00D0C0F1 /* TourAppLLMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourAppLLMApp.swift; sourceTree = "<group>"; };
+		96E6E18F2BA218AA00D0C0F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		96E6E1902BA218AA00D0C0F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96E6E1912BA218AA00D0C0F1 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		96E6E1922BA218AA00D0C0F1 /* MetricKitMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricKitMonitor.swift; sourceTree = "<group>"; };
+		96E6E1932BA218AA00D0C0F1 /* CrashlyticsBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashlyticsBridge.swift; sourceTree = "<group>"; };
+		96E6E1942BA218AA00D0C0F1 /* WeChatAuthBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatAuthBridge.swift; sourceTree = "<group>"; };
+		96E6E1A72BA218AA00D0C0F1 /* TourAppLLM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TourAppLLM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		96E6E18C2BA218AA00D0C0F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		96E6E1892BA218AA00D0C0F1 = {
+			isa = PBXGroup;
+			children = (
+				96E6E1952BA218AA00D0C0F1 /* App */,
+				96E6E1962BA218AA00D0C0F1 /* Features */,
+				96E6E1972BA218AA00D0C0F1 /* Shared */,
+				96E6E1982BA218AA00D0C0F1 /* Resources */,
+				96E6E1A62BA218AA00D0C0F1 /* Products */
+			);
+			sourceTree = "<group>";
+		};
+		96E6E1952BA218AA00D0C0F1 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E18E2BA218AA00D0C0F1 /* TourAppLLMApp.swift */,
+				96E6E18F2BA218AA00D0C0F1 /* ContentView.swift */,
+				96E6E1902BA218AA00D0C0F1 /* Info.plist */
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		96E6E1962BA218AA00D0C0F1 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E19A2BA218AA00D0C0F1 /* Camera */,
+				96E6E19B2BA218AA00D0C0F1 /* Chat */,
+				96E6E1A22BA218AA00D0C0F1 /* Location */,
+				96E6E1A32BA218AA00D0C0F1 /* Onboarding */
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		96E6E1972BA218AA00D0C0F1 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E1A42BA218AA00D0C0F1 /* Services */,
+				96E6E1A52BA218AA00D0C0F1 /* Networking */,
+				96E6E1AE2BA218AA00D0C0F1 /* Cache */,
+				96E6E1AF2BA218AA00D0C0F1 /* Analytics */,
+				96E6E1992BA218AA00D0C0F1 /* Integrations */
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		96E6E1982BA218AA00D0C0F1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E1912BA218AA00D0C0F1 /* DesignTokens.swift */
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		96E6E1992BA218AA00D0C0F1 /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E1922BA218AA00D0C0F1 /* MetricKitMonitor.swift */,
+				96E6E1932BA218AA00D0C0F1 /* CrashlyticsBridge.swift */,
+				96E6E1942BA218AA00D0C0F1 /* WeChatAuthBridge.swift */
+			);
+			path = Integrations;
+			sourceTree = "<group>";
+		};
+		96E6E19A2BA218AA00D0C0F1 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		96E6E19B2BA218AA00D0C0F1 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		96E6E1A22BA218AA00D0C0F1 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		96E6E1A32BA218AA00D0C0F1 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		96E6E1A42BA218AA00D0C0F1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		96E6E1A52BA218AA00D0C0F1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		96E6E1AE2BA218AA00D0C0F1 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		96E6E1AF2BA218AA00D0C0F1 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		96E6E1A62BA218AA00D0C0F1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				96E6E1A72BA218AA00D0C0F1 /* TourAppLLM.app */
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		96E6E18A2BA218AA00D0C0F1 /* TourAppLLM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96E6E1AD2BA218AA00D0C0F1 /* Build configuration list for PBXNativeTarget "TourAppLLM" */;
+			buildPhases = (
+				96E6E18B2BA218AA00D0C0F1 /* Sources */,
+				96E6E18C2BA218AA00D0C0F1 /* Frameworks */,
+				96E6E18D2BA218AA00D0C0F1 /* Resources */
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TourAppLLM;
+			productName = TourAppLLM;
+			productReference = 96E6E1A72BA218AA00D0C0F1 /* TourAppLLM.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96E6E1882BA218AA00D0C0F1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				ORGANIZATIONNAME = "TourApp";
+				TargetAttributes = {
+					96E6E18A2BA218AA00D0C0F1 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 96E6E1AC2BA218AA00D0C0F1 /* Build configuration list for PBXProject "TourAppLLM" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 96E6E1892BA218AA00D0C0F1;
+			productRefGroup = 96E6E1A62BA218AA00D0C0F1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				96E6E18A2BA218AA00D0C0F1 /* TourAppLLM */
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		96E6E18D2BA218AA00D0C0F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		96E6E18B2BA218AA00D0C0F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E6E19C2BA218AA00D0C0F1 /* TourAppLLMApp.swift in Sources */,
+				96E6E19D2BA218AA00D0C0F1 /* ContentView.swift in Sources */,
+				96E6E19E2BA218AA00D0C0F1 /* DesignTokens.swift in Sources */,
+				96E6E19F2BA218AA00D0C0F1 /* MetricKitMonitor.swift in Sources */,
+				96E6E1A02BA218AA00D0C0F1 /* CrashlyticsBridge.swift in Sources */,
+				96E6E1A12BA218AA00D0C0F1 /* WeChatAuthBridge.swift in Sources */
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		96E6E1A82BA218AA00D0C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)"
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		96E6E1A92BA218AA00D0C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		96E6E1AA2BA218AA00D0C0F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TourAppLLM/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tourapp.llm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		96E6E1AB2BA218AA00D0C0F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = TourAppLLM/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tourapp.llm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		96E6E1AC2BA218AA00D0C0F1 /* Build configuration list for PBXProject "TourAppLLM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E6E1A82BA218AA00D0C0F1 /* Debug */,
+				96E6E1A92BA218AA00D0C0F1 /* Release */
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96E6E1AD2BA218AA00D0C0F1 /* Build configuration list for PBXNativeTarget "TourAppLLM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96E6E1AA2BA218AA00D0C0F1 /* Debug */,
+				96E6E1AB2BA218AA00D0C0F1 /* Release */
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 96E6E1882BA218AA00D0C0F1 /* Project object */;
+}

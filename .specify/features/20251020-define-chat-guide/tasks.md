@@ -15,15 +15,15 @@
 - Iterative Steps: Ship US1 baseline capture flow, layer geofence auto-play (US2), then add personalization, offline reuse, and feedback (US3), concluding with polish tasks.
 
 ## Phase 1 — Setup
-- [ ] T001 Configure SwiftUI workspace structure in TourAppLLM.xcodeproj/project.pbxproj per module layout
-- [ ] T002 Add required dependencies (MetricKit, Crashlytics, WeChat SDK stubs) in TourAppLLM.xcodeproj/project.pbxproj
-- [ ] T003 Establish design token definitions in TourAppLLM/Resources/DesignTokens.swift
+- [X] T001 Configure SwiftUI workspace structure in TourAppLLM.xcodeproj/project.pbxproj per module layout
+- [X] T002 Add required dependencies (MetricKit, Crashlytics, WeChat SDK stubs) in TourAppLLM.xcodeproj/project.pbxproj
+- [X] T003 Establish design token definitions in TourAppLLM/Resources/DesignTokens.swift
 
 ## Phase 2 — Foundational
-- [ ] T004 Implement permission preference store and onboarding hooks in TourAppLLM/Shared/Services/PermissionStore.swift
-- [ ] T005 [P] Implement LRU cache manager aligned to 500 MB budget in TourAppLLM/Shared/Cache/NarrationCacheManager.swift
-- [ ] T006 [P] Scaffold narration API client with request/response models in TourAppLLM/Shared/Networking/NarrationAPI.swift
-- [ ] T007 Seed analytics event dispatcher with required schemas in TourAppLLM/Shared/Analytics/NarrationAnalytics.swift
+- [X] T004 Implement permission preference store and onboarding hooks in TourAppLLM/Shared/Services/PermissionStore.swift
+- [X] T005 [P] Implement LRU cache manager aligned to 500 MB budget in TourAppLLM/Shared/Cache/NarrationCacheManager.swift
+- [X] T006 [P] Scaffold narration API client with request/response models in TourAppLLM/Shared/Networking/NarrationAPI.swift
+- [X] T007 Seed analytics event dispatcher with required schemas in TourAppLLM/Shared/Analytics/NarrationAnalytics.swift
 
 ## Phase 3 — User Story US1 (P1)
 - Story Goal: Enable travelers to capture a photo and immediately receive segmented narration within the chat overlay.
