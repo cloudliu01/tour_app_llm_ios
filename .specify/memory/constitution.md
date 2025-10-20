@@ -1,29 +1,29 @@
 <!--
 Sync Impact Report
-Version: none → 1.0.0
-Modified Principles: (new document)
-Added Sections: Preamble; Principles; Governance
+Version: 1.0.0 → 1.1.0
+Modified Principles: Principle 1 — Native Apple Experience → Principle 1 — Conversation-First Native Foundation; Principle 3 — Offline Resilience & Performance (expanded KPI guardrails); Principle 4 — Observable & Inclusive Delivery (clarified instrumentation scope)
+Added Sections: none
 Removed Sections: none
 Templates Requiring Updates: ⚠ .specify/templates/plan-template.md (missing); ⚠ .specify/templates/spec-template.md (missing); ⚠ .specify/templates/tasks-template.md (missing); ⚠ .specify/templates/commands (directory missing)
-Follow-up TODOs: Establish maintainer roster; Create missing .specify templates aligned with principles
+Follow-up TODOs: Establish maintainer roster; Create missing .specify templates aligned with principles; Propagate conversation-first chat decisions into downstream specs once templates exist
 -->
 
 # Tour App LLM iOS Constitution
 
 ## Metadata
-- Constitution Version: 1.0.0
+- Constitution Version: 1.1.0
 - Ratification Date: 2025-10-20
 - Last Amended Date: 2025-10-20
 - Maintainers: TODO(OWNERS) nominate core maintainers for constitutional decisions
 
 ## Preamble
-Tour App LLM iOS delivers on-device capture, narration playback, and contextual travel guidance inspired by the product brief in `README.md`. This constitution codifies the non-negotiable standards for delivering a Swift-based iOS experience that honors Apple's design system, safeguards user trust, and keeps the roadmap aligned with the core capture-to-playback journey.
+Tour App LLM iOS delivers on-device capture, narration playback, and contextual travel guidance inspired by the product brief in `README.md` and the consolidated “Overview vNext”. This constitution codifies the non-negotiable standards for delivering a Swift-based iOS experience that honors Apple's design system, safeguards user trust, and keeps the roadmap aligned with the capture-to-chat-to-playback journey.
 
-## Principle 1 — Native Apple Experience
-- MUST implement the app in Swift and SwiftUI, aligning layouts with Human Interface Guidelines for iPhone 8 and newer screens while supporting Dynamic Type and accessibility traits.
-- MUST target iOS 18.1+ deployments and validate core flows (camera, playback, map, history, settings) on both notch and non-notch devices (iPhone 8, iPhone 15 Pro simulator baselines).
-- MUST keep design tokens (color, typography, corner radii) in sync with the design system captured in `README.md` and any `Docs/Figma` assets.
-Rationale: A consistent Apple-native experience strengthens usability and accelerates App Store approval.
+## Principle 1 — Conversation-First Native Foundation
+- MUST implement the app in Swift and SwiftUI, align layouts with Human Interface Guidelines for iPhone 8 and newer screens, and validate Dynamic Type and accessibility traits on both notch and non-notch simulators (baseline: iPhone 8, iPhone 15 Pro running iOS 18.1+).
+- MUST present the Chat Overlay as the primary interaction layer: camera home launches the conversational thread, narration flows bubble-by-bubble in order, clicking a bubble restarts that segment, and no separate transport controls may be introduced outside the bubble interactions for this release.
+- MUST keep design tokens (color #0A84FF palette, typography, corner radii, glassmorphism) in sync with `README.md`, “Overview vNext”, and any assets under `Docs/Figma/`.
+Rationale: A conversation-first experience that feels Apple-native ensures the “对话即导游” promise remains coherent across devices.
 
 ## Principle 2 — Responsible Data & Privacy
 - MUST request camera, microphone, and location permissions with just-in-time copy that mirrors onboarding promises and avoid collecting unnecessary metadata.
@@ -32,15 +32,15 @@ Rationale: A consistent Apple-native experience strengthens usability and accele
 Rationale: Users grant sensitive access; transparent data boundaries preserve trust and regulatory compliance.
 
 ## Principle 3 — Offline Resilience & Performance
-- MUST keep capture, upload, generation, and TTS pipelines resilient with retry, caching, and background task policies defined in the README (e.g., 500 MB cap, segmented progress feedback).
-- MUST deliver first-frame playback within the stated targets (<3 s cache hit, <8 s new narration) and surface fallbacks (text draft, retry prompts) when deadlines are missed.
-- MUST ship automated coverage for cache management, background completion notifications, and weak-network guardrails before enabling related features.
+- MUST keep capture, upload, generation, and TTS pipelines resilient with retry, caching, and background task policies defined in the README and “Overview vNext” (e.g., 500 MB LRU cache, text-first fallback, sequential playback resume).
+- MUST meet the declared KPIs: cache hit first frame ≤3 s, new narration ≤8 s, capture-to-audio ≤10 s, geo-trigger P95 ≤2.5 s, playback resume <300 ms, daily battery impact ≤5%, and document remediation plans if any target is temporarily waived.
+- MUST ship automated coverage for cache management, background completion notifications, weak-network guardrails, and bubble-sequencing logic before enabling related features.
 Rationale: Travelers depend on responsive guidance in poor connectivity; resilient workloads prevent regressions.
 
 ## Principle 4 — Observable & Inclusive Delivery
-- MUST instrument key events (capture, generation, playback, feedback, cache) following the analytics matrix in the README and keep schema changes documented.
+- MUST instrument key events (capture, generation, playback sequence, feedback, cache, auto-play triggers) following the analytics matrix in the README/“Overview vNext” and keep schema changes documented.
 - MUST include accessibility validation, localized copy (CN/EN/JP), and audio preference toggles in definition of done for relevant tasks.
-- MUST require code reviews that verify adherence to architecture module boundaries (Camera, Playback, Map, Library, Settings, Shared services) and link to the governing briefs.
+- MUST require code reviews that verify adherence to architecture module boundaries (Camera, Chat Overlay, Map, Settings, Shared services) and link to the governing briefs.
 Rationale: Observability and inclusive defaults enable confident releases and global usability.
 
 ## Governance
