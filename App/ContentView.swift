@@ -12,8 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         GeometryReader { proxy in
-            let layoutWidth = min(proxy.size.width - 32, 380)
-            let horizontalInset = max((proxy.size.width - layoutWidth) / 2, 16)
+            let rawWidth = proxy.size.width - 32
+            let layoutWidth = rawWidth > 0 ? min(rawWidth, 380) : proxy.size.width * 0.9
 
             ZStack {
                 backgroundPreview
@@ -63,6 +63,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .top)
 
                 let handleSize: CGFloat = 46
+                let handleMargin: CGFloat = 16
                 Button(action: { isDrawerOpen.toggle() }) {
                     Image(systemName: "line.3.horizontal")
                         .font(.headline)
@@ -74,7 +75,7 @@ struct ContentView: View {
                 }
                 .frame(width: handleSize, height: handleSize)
                 .position(
-                    x: proxy.size.width - handleSize / 2 - 12,
+                    x: proxy.size.width - handleSize / 2 - handleMargin,
                     y: proxy.size.height / 2
                 )
             }
