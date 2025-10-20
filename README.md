@@ -108,12 +108,13 @@ TBD
 
 ---
 
-# C. Figma 提示词包（中英双语，可直接复制到 Figma AI / Magician / Galileo）
+# C. Figma 提示词包（中英双语，可直接复制到 Figma AI / Magician / Galileo）  
 
 > 统一规范：iOS 18 风格；iPhone 15 Pro 画板；SF Pro；主色 #0A84FF；圆角 16；毛玻璃与柔和阴影；Auto Layout + 约束；支持浅/深色；**导航为“拍照主屏 + 右侧滑出抽屉”**。
 
-## 1) 主屏（相机 + 右侧抽屉）
+## 1) 主屏（相机 + 右侧抽屉）   
 Design an iOS camera home screen for a travel narration app. Elements: full-screen camera preview; centered circular shutter at bottom; gallery thumbnail at bottom-left; aand a chat bubble button (💬) at bottom-right which opens a chat overlay.; a top location pill (country/city/POI with a “Precise/Reduced” toggle on the right); a “Import from Photos” button at top-right. Add a right-edge slide-out drawer handle (16px) that reveals three items: Map, Settings (icon + label, large rounded list). After capture, show a segmented progress bar at the top with states (Upload, Match, Generate, TTS). Clean, native feel, 16-radius, glassmorphism, light/dark.
+
 ---
 
 Chat overlay
@@ -124,7 +125,7 @@ Scrollable conversation area with grouped histories — each group shows a small
 Bottom input bar: mic 🎙️, text field, send ➤.
 Supports swipe-down to dismiss. Keep the layout clean, minimal, and native.
 
-## 2) 播放结果页（流式播放器）
+## 2) 播放结果页（流式播放器）  
 
 Design an “Audio Playback” screen: cover image at top (captured photo); title with place name, subtitle with city and date; progress bar with timestamps; controls: Play/Pause, Back 15s, Next sentence, Speed (0.8/1.0/1.25/1.5). Top-right “Download for offline” icon; beside controls, show “👍 Useful / 👎 Not useful / Regenerate”. If audio not ready, show waveform skeleton and “Preparing first frame”. Card over blurred background, 16-radius.
 
