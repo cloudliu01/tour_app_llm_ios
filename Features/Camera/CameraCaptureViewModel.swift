@@ -14,7 +14,7 @@ final class CameraCaptureViewModel: ObservableObject {
 
     func onAppear() {
         Task {
-            try? await captureService.configureSession()
+            try? captureService.configureSession()
             captureService.startSession()
         }
     }

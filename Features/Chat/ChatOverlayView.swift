@@ -28,8 +28,8 @@ struct ChatOverlayView: View {
                     .padding()
                 }
                 .background(DesignTokens.ColorPalette.background.opacity(0.9))
-                .onChange(of: viewModel.activeSegmentId) { id in
-                    guard let id else { return }
+                .onChange(of: viewModel.activeSegmentId) { oldValue, newValue in
+                    guard let id = newValue else { return }
                     withAnimation {
                         proxy.scrollTo(id, anchor: .center)
                     }

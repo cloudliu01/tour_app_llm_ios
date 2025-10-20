@@ -3,9 +3,12 @@ import Combine
 import CoreLocation
 import Foundation
 
-/// Coordinates camera capture, persists the latest photo, and submits narration requests.
-@MainActor
-final class CameraCaptureService: NSObject, ObservableObject {
+// Conform to @unchecked Sendable because instances are used from @Sendable closures
+// dispatched onto a dedicated serial queue (`queue`). Access to mutable state is
+// either confined to that queue or performed on the main actor (e.g., updates to
+// `latestPhotoURL`). This silences captures of `self` in DispatchQueue.async closures
+// while keeping behavior safe in practice.
+final class CameraCaptureService: NSObject, ObservableObject, @unchecked Sendable {
     enum CaptureError: Error {
         case cameraUnavailable
         case captureFailed
@@ -74,7 +77,9 @@ final class CameraCaptureService: NSObject, ObservableObject {
         let tempURL = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString + ".jpg")
         try data.write(to: tempURL)
-        latestPhotoURL = tempURL
+        await MainActor.run { [tempURL] in
+            self.latestPhotoURL = tempURL
+        }
 
         let requestId = UUID().uuidString
         NarrationAnalytics.shared.trackCaptureStarted(photoId: tempURL.lastPathComponent, requestId: requestId)

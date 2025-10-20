@@ -10,6 +10,7 @@ protocol NarrationAnalyticsSink {
     func track(_ event: NarrationAnalyticsEvent)
 }
 
+@MainActor
 final class NarrationAnalytics {
     static let shared = NarrationAnalytics()
 
@@ -48,3 +49,4 @@ final class NarrationAnalytics {
         sinks.forEach { $0.track(event) }
     }
 }
+

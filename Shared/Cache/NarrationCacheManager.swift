@@ -1,6 +1,7 @@
 import Foundation
 
 /// Maintains on-device cache of narration threads and segments within a 500 MB budget.
+@MainActor
 final class NarrationCacheManager {
     static let shared = NarrationCacheManager()
 
@@ -91,3 +92,4 @@ struct CacheEntry: Codable {
     let sizeBytes: Int
     var lastAccessed: Date
 }
+

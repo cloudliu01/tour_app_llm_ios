@@ -14,27 +14,28 @@ struct ContentView: View {
         ZStack {
             backgroundPreview
 
-            if isProcessing {
-                ProgressStepsView(steps: steps, currentIndex: currentStep)
-                    .padding(.top, 16)
-                    .transition(.opacity)
-            } else {
+            VStack(spacing: 16) {
                 LocationPillView(
                     location: "Paris, France",
                     type: locationType,
                     onToggle: toggleLocationType
                 )
                 .padding(.top, 24)
-                .transition(.move(edge: .top).combined(with: .opacity))
+
+                if isProcessing {
+                    ProgressStepsView(steps: steps, currentIndex: currentStep)
+                        .transition(.opacity)
+                }
             }
+            .frame(maxWidth: .infinity, alignment: .top)
 
             CameraControlsView(
                 onCapture: handleCapture,
                 onGallery: { print("Open gallery") },
-                onChat: { isChatOpen = true },
-                onDrawer: { isDrawerOpen.toggle() }
+                onChat: { isChatOpen = true }
             )
-            .padding(.bottom, 32)
+            .padding(.horizontal, 32)
+            .padding(.bottom, 36)
             .frame(maxHeight: .infinity, alignment: .bottom)
 
             SlideOutDrawerView(isOpen: isDrawerOpen, onToggle: { isDrawerOpen.toggle() })
@@ -52,7 +53,19 @@ struct ContentView: View {
                     .clipShape(Capsule())
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding(.top, 80)
+            .padding(.top, 120)
+
+            Button(action: { isDrawerOpen.toggle() }) {
+                Image(systemName: "line.3.horizontal")
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                    .padding(14)
+                    .background(Material.ultraThin)
+                    .clipShape(Circle())
+                    .shadow(radius: 6)
+            }
+            .padding(.trailing, 12)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
@@ -202,10 +215,11 @@ private struct CameraControlsView: View {
     let onCapture: () -> Void
     let onGallery: () -> Void
     let onChat: () -> Void
-    let onDrawer: () -> Void
 
     var body: some View {
-        HStack(spacing: 32) {
+        HStack {
+            Spacer()
+
             Button(action: onGallery) {
                 Image(systemName: "photo.on.rectangle")
                     .font(.title2)
@@ -215,12 +229,20 @@ private struct CameraControlsView: View {
                     .clipShape(Circle())
             }
 
+            Spacer()
+
             Button(action: onCapture) {
                 Circle()
                     .strokeBorder(Color.white, lineWidth: 6)
-                    .frame(width: 90, height: 90)
-                    .overlay(Circle().fill(Color.white.opacity(0.15)).frame(width: 70, height: 70))
+                    .frame(width: 96, height: 96)
+                    .overlay(
+                        Circle()
+                            .fill(Color.white.opacity(0.18))
+                            .frame(width: 72, height: 72)
+                    )
             }
+
+            Spacer()
 
             Button(action: onChat) {
                 Image(systemName: "ellipsis.message")
@@ -231,14 +253,7 @@ private struct CameraControlsView: View {
                     .clipShape(Circle())
             }
 
-            Button(action: onDrawer) {
-                Image(systemName: "line.3.horizontal")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .padding(16)
-                    .background(Material.ultraThin)
-                    .clipShape(Circle())
-            }
+            Spacer()
         }
     }
 }
@@ -323,3 +338,4 @@ private struct SlideOutDrawerView: View {
 #Preview {
     ContentView()
 }
+
