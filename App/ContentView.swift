@@ -62,6 +62,7 @@ struct ContentView: View {
                 .padding(.top, 118)
                 .frame(maxWidth: .infinity, alignment: .top)
 
+                let handleSize: CGFloat = 46
                 Button(action: { isDrawerOpen.toggle() }) {
                     Image(systemName: "line.3.horizontal")
                         .font(.headline)
@@ -71,8 +72,11 @@ struct ContentView: View {
                         .clipShape(Circle())
                         .shadow(color: .black.opacity(0.3), radius: 6, x: 0, y: 2)
                 }
-                .padding(.trailing, horizontalInset - 12)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: Alignment(horizontal: .trailing, vertical: .center))
+                .frame(width: handleSize, height: handleSize)
+                .position(
+                    x: proxy.size.width - handleSize / 2 - 12,
+                    y: proxy.size.height / 2
+                )
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .background(Color.black)
