@@ -10,6 +10,11 @@
 - Ensure the chat overlay becomes the single surface for narration discovery, control, personalization, and history.
 - Guarantee resilient access to narrations across weak connectivity via reuse, caching, and offline playback.
 
+## User Stories & Priorities
+- **P1 — US1 Photo-Guided Narration**: As a traveler capturing a landmark photo, I receive immediate segmented narration in the chat overlay with sequential playback and bubble highlighting.
+- **P1 — US2 Location-Triggered Narration**: As a traveler approaching a point of interest with headphones connected, I am prompted (or auto-played on opt-in) with the relevant chat thread starting from the first segment.
+- **P2 — US3 Personalized & Reusable Narrations**: As a traveler, I can issue natural-language commands (e.g., “更活泼”, “英文版”) to regenerate narration blocks, replay cached content offline, and provide usefulness feedback per segment.
+
 ## Non-Goals
 - Supporting non-iOS platforms, desktop clients, or community-generated content.
 - Introducing social sharing, public comments, or merchandising flows.
