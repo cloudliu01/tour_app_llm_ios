@@ -1,10 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    private let captureService = CameraCaptureService(
+        narrationClient: NarrationAPIClient(baseURL: URL(string: "https://example.com")!)
+    )
+
     var body: some View {
-        Text("TourApp LLM")
-            .font(.headline)
-            .padding()
+        CameraCaptureView(
+            viewModel: CameraCaptureViewModel(captureService: captureService)
+        )
     }
 }
 

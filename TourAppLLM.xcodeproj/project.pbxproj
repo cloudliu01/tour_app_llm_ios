@@ -17,6 +17,12 @@
 		B5E924ED2EA6CEBB00E04BB3 /* NarrationCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E924DB2EA6CEBB00E04BB3 /* NarrationCacheManager.swift */; };
 		B5E924EE2EA6CEBB00E04BB3 /* PermissionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E924E32EA6CEBB00E04BB3 /* PermissionStore.swift */; };
 		B5E924EF2EA6CEBB00E04BB3 /* MetricKitMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E924DE2EA6CEBB00E04BB3 /* MetricKitMonitor.swift */; };
+		B5E925002EA6D7B800E04BB3 /* CameraCaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9250A2EA6D7B800E04BB3 /* CameraCaptureView.swift */; };
+		B5E925012EA6D7B800E04BB3 /* CameraCaptureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9250B2EA6D7B800E04BB3 /* CameraCaptureViewModel.swift */; };
+		B5E925022EA6D7B800E04BB3 /* CameraCaptureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9250C2EA6D7B800E04BB3 /* CameraCaptureService.swift */; };
+		B5E925032EA6D7B800E04BB3 /* ChatOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9250E2EA6D7B800E04BB3 /* ChatOverlayView.swift */; };
+		B5E925042EA6D7B800E04BB3 /* ChatOverlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E9250F2EA6D7B800E04BB3 /* ChatOverlayViewModel.swift */; };
+		B5E925052EA6D7B800E04BB3 /* NarrationStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E925102EA6D7B800E04BB3 /* NarrationStreamHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		B5E924DF2EA6CEBB00E04BB3 /* WeChatAuthBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatAuthBridge.swift; sourceTree = "<group>"; };
 		B5E924E12EA6CEBB00E04BB3 /* NarrationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrationAPI.swift; sourceTree = "<group>"; };
 		B5E924E32EA6CEBB00E04BB3 /* PermissionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionStore.swift; sourceTree = "<group>"; };
+		B5E9250A2EA6D7B800E04BB3 /* CameraCaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureView.swift; sourceTree = "<group>"; };
+		B5E9250B2EA6D7B800E04BB3 /* CameraCaptureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureViewModel.swift; sourceTree = "<group>"; };
+		B5E9250C2EA6D7B800E04BB3 /* CameraCaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureService.swift; sourceTree = "<group>"; };
+		B5E9250E2EA6D7B800E04BB3 /* ChatOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOverlayView.swift; sourceTree = "<group>"; };
+		B5E9250F2EA6D7B800E04BB3 /* ChatOverlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOverlayViewModel.swift; sourceTree = "<group>"; };
+		B5E925102EA6D7B800E04BB3 /* NarrationStreamHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NarrationStreamHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,7 @@
 				96E6E1A62BA218AA00D0C0F1 /* Products */,
 				B5E924D62EA6CEBB00E04BB3 /* App */,
 				B5E924D82EA6CEBB00E04BB3 /* Resources */,
+				B5E925062EA6D7B800E04BB3 /* Features */,
 				B5E924E52EA6CEBB00E04BB3 /* Shared */,
 			);
 			sourceTree = "<group>";
@@ -111,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E924E12EA6CEBB00E04BB3 /* NarrationAPI.swift */,
+				B5E925102EA6D7B800E04BB3 /* NarrationStreamHandler.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -133,6 +147,34 @@
 				B5E924E42EA6CEBB00E04BB3 /* Services */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		B5E925062EA6D7B800E04BB3 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				B5E925072EA6D7B800E04BB3 /* Camera */,
+				B5E9250D2EA6D7B800E04BB3 /* Chat */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		B5E925072EA6D7B800E04BB3 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				B5E9250C2EA6D7B800E04BB3 /* CameraCaptureService.swift */,
+				B5E9250B2EA6D7B800E04BB3 /* CameraCaptureViewModel.swift */,
+				B5E9250A2EA6D7B800E04BB3 /* CameraCaptureView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		B5E9250D2EA6D7B800E04BB3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B5E9250F2EA6D7B800E04BB3 /* ChatOverlayViewModel.swift */,
+				B5E9250E2EA6D7B800E04BB3 /* ChatOverlayView.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +245,12 @@
 				B5E924ED2EA6CEBB00E04BB3 /* NarrationCacheManager.swift in Sources */,
 				B5E924EE2EA6CEBB00E04BB3 /* PermissionStore.swift in Sources */,
 				B5E924EF2EA6CEBB00E04BB3 /* MetricKitMonitor.swift in Sources */,
+				B5E925002EA6D7B800E04BB3 /* CameraCaptureView.swift in Sources */,
+				B5E925012EA6D7B800E04BB3 /* CameraCaptureViewModel.swift in Sources */,
+				B5E925022EA6D7B800E04BB3 /* CameraCaptureService.swift in Sources */,
+				B5E925032EA6D7B800E04BB3 /* ChatOverlayView.swift in Sources */,
+				B5E925042EA6D7B800E04BB3 /* ChatOverlayViewModel.swift in Sources */,
+				B5E925052EA6D7B800E04BB3 /* NarrationStreamHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
