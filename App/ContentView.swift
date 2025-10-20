@@ -25,6 +25,14 @@ struct ContentView: View {
                         type: locationType,
                         onToggle: toggleLocationType
                     )
+                    Button(action: { isDark.toggle() }) {
+                        Text(isDark ? "☀️ Light" : "🌙 Dark")
+                            .font(.caption)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(Material.ultraThin)
+                            .clipShape(Capsule())
+                    }
 
                     if isProcessing {
                         ProgressStepsView(steps: steps, currentIndex: currentStep)
@@ -32,8 +40,9 @@ struct ContentView: View {
                     }
                 }
                 .frame(width: layoutWidth)
-                .padding(.top, 24)
+                .padding(.top, proxy.safeAreaInsets.top + 24)
                 .frame(maxWidth: .infinity, alignment: .top)
+                .frame(maxHeight: .infinity, alignment: .top)
 
                 CameraControlsView(
                     onCapture: handleCapture,
@@ -49,18 +58,6 @@ struct ContentView: View {
                 if isChatOpen {
                     chatOverlay
                 }
-
-                Button(action: { isDark.toggle() }) {
-                    Text(isDark ? "☀️ Light" : "🌙 Dark")
-                        .font(.caption)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 8)
-                        .background(Material.ultraThin)
-                        .clipShape(Capsule())
-                }
-                .frame(width: layoutWidth)
-                .padding(.top, 118)
-                .frame(maxWidth: .infinity, alignment: .top)
 
                 let handleSize: CGFloat = 46
                 let handleMargin: CGFloat = 16
